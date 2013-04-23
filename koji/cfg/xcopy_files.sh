@@ -50,7 +50,10 @@ chown apache.apache /mnt/koji
 cd -
 
 # Disable firewall
-service iptables stop
-service ip6tables stop
-chkconfig iptables off
-chkconfig ip6tables off
+systemctl disable firewalld.service
+systemctl stop firewalld.service
+systemctl disable iptables.service
+systemctl stop iptables.service
+systemctl disable ip6tables.service
+systemctl stop ip6tables.service
+
