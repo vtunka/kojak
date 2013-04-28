@@ -1,4 +1,4 @@
 scripts
 =======
 
-Misc scripts
+Koji installation scripts
