@@ -1,4 +1,4 @@
-scripts
+Brew/Koji installation scripts
 =======
 
-Koji installation scripts
+Installation scripts used to automate the Brew/Koji installation procesdure.
