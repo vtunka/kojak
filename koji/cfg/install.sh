@@ -28,6 +28,8 @@ mv /etc/kojiweb/web.conf /etc/kojiweb/web.conf.orig && cp etc/kojiweb/web.conf /
 mv /var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf.orig && cp var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf
 mv /var/lib/pgsql/data/postgresql.conf /var/lib/pgsql/data/postgresql.conf.orig && cp var/lib/pgsql/data/postgresql.conf /var/lib/pgsql/data/postgresql.conf
 cat /etc/koji.conf > /home/koji/.koji/config
+
+# Fix Permissions
 chown postgres:postgres /var/lib/pgsql/data/pg_hba.conf
 chown postgres:postgres /var/lib/pgsql/data/postgresql.conf
 chown koji:apache /home/koji/.koji/config
