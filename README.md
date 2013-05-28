@@ -1,4 +1,5 @@
-Brew/Koji installation scripts
+Kojak - Koji in a box
 =======
 
-Installation scripts used to automate the Brew/Koji installation procedure.
+Kojak is set of scripts used to automate the installation of Koji with Mead extentions.
+It is part of the productization effort for Koji with Mead with a view to making adoption easier.
