@@ -12,7 +12,6 @@ virsh undefine ${VMNAME}
 rm ${IMGDIR}/${VMNAME}.img
 
 fallocate -l 24576M ${IMGDIR}/${VMNAME}.img
-chown qemu:qemu ${IMGDIR}/${VMNAME}.img
 
 virt-install \
 -n ${VMNAME} \
@@ -25,7 +24,6 @@ virt-install \
 --disk=${IMGDIR}/${VMNAME}.img \
 --disk=${ISODIR}/${KS_ISO},device=cdrom \
 --location ${ISODIR}/${KS_ISO} \
---initrd-inject=${CFGDIR}/ks.cfg \
---extra-args="ks=file:ks.cfg console=tty0 console=ttyS0,115200" \
+--extra-args="append ks=cdrom initrd=initrd.img ramdisk_size=8192 console=tty0 console=ttyS0,115200" \
 --nographics
 
