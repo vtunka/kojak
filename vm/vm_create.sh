@@ -26,6 +26,6 @@ virt-install \
 --disk=${ISODIR}/${KS_ISO},device=cdrom \
 --location ${ISODIR}/${KS_ISO} \
 --initrd-inject=${CFGDIR}/ks.cfg \
---extra-args="ks=file:ks.cfg console=tty0 console=ttyS0,115200" \
+--extra-args="ks=file:ks.cfg console=tty0 console=ttyS0,115200 serial rd_NO_PLYMOUTH" \
 --nographics
 
