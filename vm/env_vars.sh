@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Environment varibles sources by build scripts
+# Environment variables sources by build scripts
 
 VMNAME="Fedora-18-x86_64-DVD"
 VMHOME="/var/lib/libvirt/images/"

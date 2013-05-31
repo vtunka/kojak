@@ -5,7 +5,7 @@
 # Note...check for creation of time stamp file which should indicate the
 # successful execution of the script.
 
-## Declare environment varibles.
+## Declare environment variables.
 #
 # Use default certificate authority name
 CANAME="koji" 
