@@ -9,10 +9,10 @@ cd ${VMHOME}
 virsh destroy ${VMNAME}
 virsh undefine ${VMNAME}
 
-rm ${IMGDIR}/${VMNAME}.img
+rm ${VMHOME}/${VMNAME}.img
 
-fallocate -l 24576M ${IMGDIR}/${VMNAME}.img
-chown qemu:qemu ${IMGDIR}/${VMNAME}.img
+fallocate -l 24576M ${VMHOME}/${VMNAME}.img
+chown qemu:qemu ${VMHOME}/${VMNAME}.img
 
 virt-install \
 -n ${VMNAME} \
@@ -22,10 +22,10 @@ virt-install \
 --os-variant=fedora18 \
 --accelerate \
 --mac=00:00:00:00:00:00 \
---disk=${IMGDIR}/${VMNAME}.img \
+--disk=${VMHOME}/${VMNAME}.img \
 --disk=${ISODIR}/${KS_ISO},device=cdrom \
 --location ${ISODIR}/${KS_ISO} \
---initrd-inject=${CFGDIR}/ks.cfg \
+--initrd-inject=./ks.cfg \
 --extra-args="ks=file:ks.cfg console=tty0 console=ttyS0,115200 serial rd_NO_PLYMOUTH" \
 --nographics
 
