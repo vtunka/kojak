@@ -1,4 +1,4 @@
-#
+#!/bin/bash
 # Simple script to install a vm
 
 set -x

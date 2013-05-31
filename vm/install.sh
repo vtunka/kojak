@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Simple script to set up the environment
 
