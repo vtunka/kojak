@@ -17,4 +17,6 @@ else
     cd -
 fi
 
+cp kojak_ks.cfg $CFGDIR/
+
 ./vm_create.sh
