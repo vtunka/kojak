@@ -17,4 +17,4 @@ else
     cd -
 fi
 
-tree $TMPDIR
+./vm_create.sh
