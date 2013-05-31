@@ -25,7 +25,7 @@ virt-install \
 --disk=${VMHOME}/${VMNAME}.img \
 --disk=${ISODIR}/${KS_ISO},device=cdrom \
 --location ${ISODIR}/${KS_ISO} \
---initrd-inject=./ks.cfg \
---extra-args="ks=file:ks.cfg console=tty0 console=ttyS0,115200 serial rd_NO_PLYMOUTH" \
+--initrd-inject=./kojack_ks.cfg \
+--extra-args="ks=file:kojack_ks.cfg console=tty0 console=ttyS0,115200 serial rd_NO_PLYMOUTH" \
 --nographics
 
