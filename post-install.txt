@@ -124,22 +124,14 @@ systemctl restart postgresql.service
 
 # Create the database tables
 su -l postgres -c "createuser koji; createdb -O koji koji"
-su -l koji -c "psql koji koji < /usr/share/doc/koji*/docs/schema.sql"
-su -l koji -c psql
-insert into users (name, status, usertype) values ('koji', 0, 0);
-insert into user_perms (user_id, perm_id, creator_id) values (1, 1, 1);
-insert into users (name, status, usertype) values ('kojiadmin', 0, 0);
-insert into user_perms (user_id, perm_id, creator_id) values (2, 1, 1);
-\q
+su -l koji -c "psql koji koji < /tmp/schema.sql"
+su -l koji -c "psql koji koji < /tmp/users.sql"
 
 # Restart koji services
 systemctl restart postgresql.service
 systemctl restart httpd.service
 systemctl restart kojid.service
 systemctl restart kojira.service
-
-# Grant database persmissions
-koji grant-permission repo kojira
 
 # Add hosts and channels
 
