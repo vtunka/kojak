@@ -1,0 +1,216 @@
+#!/bin/bash
+
+set -x
+
+# Create the koji server, component and user SSL certs
+# Use default certificate authority name
+CANAME="koji" 
+
+# Get the systems host and domain name.
+HOSTNAME=`hostname -s`
+DOMAINNAME=`hostname | cut -d . -f 2,3`
+
+# Certificate directories.
+CRTHOME="/etc/pki/koji/"
+CLCRTHOME="/home/koji/.koji"
+
+# Begin certificate generation
+echo -e "Generating server key and certificate authority\n"
+cd $CRTHOME
+touch index.txt
+echo 01 > serial
+
+# Genrate the private key and certificate authority
+openssl genrsa -out private/${CANAME}_ca_cert.key 2048
+openssl req -config ssl.cnf -new -x509 -days 3650 -subj \
+"/C=XX/ST=SomeState/L=SomeCity/O=SomeOrganization/OU=SomeOrganizationalUnit/CN=$HOSTNAME/emailAddress=${CANAME}@${DOMAINNAME}" \
+-key private/${CANAME}_ca_cert.key -out ${CANAME}_ca_cert.crt -extensions v3_ca
+
+echo -e "Generating component keys and signing certificates\n"
+echo -e "y\ny" > response.txt
+
+# Create certificates for the koji components.
+for USER in kojiadmin kojiuser kojira kojiweb kojihub
+do
+    echo "creating certificate for ${USER} ..."
+    openssl genrsa -out certs/${USER}.key 2048
+    
+    cat ssl.cnf | sed '0,/${HOSTNAME}/s//'${USER}'/' > ${USER}-ssl.cnf
+
+    openssl req -config ${USER}-ssl.cnf -new -days 3650 -subj \
+    "/C=XX/ST=SomeState/L=SomeCity/O=SomeOrganization/OU=SomeOrganizationalUnit/CN=${USER}/emailAddress=root@$HOSTNAME" \
+    -out certs/${USER}.csr -key certs/${USER}.key
+    
+    < response.txt openssl ca -config ${USER}-ssl.cnf -keyfile private/${CANAME}_ca_cert.key -cert ${CANAME}_ca_cert.crt \
+    -out certs/${USER}.crt -outdir certs -infiles certs/${USER}.csr
+    cat certs/${USER}.crt certs/${USER}.key > ${USER}.pem
+    mv ${USER}-ssl.cnf confs/${USER}-ssl.cnf
+
+    echo "...done"
+done
+
+# Create certificates for the koji builders.
+for USER in kojibuilder{1..3}
+do
+    echo "creating certificate for ${USER} ..."
+    openssl genrsa -out certs/${USER}.key 2048
+
+    cat ssl.cnf | sed '0,/${HOSTNAME}/s//'${USER}.${DOMAINNAME}'/' > ${USER}-ssl.cnf
+
+    openssl req -config ${USER}-ssl.cnf -new -days 3650 -subj \
+    "/C=XX/ST=SomeState/L=SomeCity/O=SomeOrganization/OU=SomeOrganizationalUnit/CN=${USER}.${DOMAINNAME}/emailAddress=root@$HOSTNAME" \
+    -out certs/${USER}.csr -key certs/${USER}.key
+
+    < response.txt openssl ca -config ${USER}-ssl.cnf -keyfile private/${CANAME}_ca_cert.key -cert ${CANAME}_ca_cert.crt \
+    -out certs/${USER}.crt -outdir certs -infiles certs/${USER}.csr
+    cat certs/${USER}.crt certs/${USER}.key > ${USER}.pem
+    mv ${USER}-ssl.cnf confs/${USER}-ssl.cnf
+
+    echo "...done"
+done
+rm response.txt
+
+# Copy the client certficates to the koji users home directory.
+echo -e "Deploying certificates...\n"
+
+cp -f /etc/pki/koji/kojiadmin.pem /home/koji/.koji/client.crt
+cp -f /etc/pki/koji/${CANAME}_ca_cert.crt /home/koji/.koji/clientca.crt
+cp -f /etc/pki/koji/${CANAME}_ca_cert.crt /home/koji/.koji/serverca.crt
+
+# Set the appropriate permissions
+chown -R koji:apache /home/koji/.koji/
+
+# Restart httpd to effect the changes.
+chkconfig httpd on
+service httpd restart
+
+# Check to make sure httpd service is up
+TSTAMP=$(( `date +%H%M%S` ))
+pgrep httpd
+RETVAL=$?
+if [ $RETVAL = 0 ]; then
+    touch $TSTAMP
+else 
+    echo "The httpd service did not start up correctly please check the certs!"
+fi
+
+cd -
+
+echo "...done"
+
+
+# Start the database
+postgresql-setup initdb
+systemctl enable postgresql.service
+systemctl start postgresql.service
+
+# /var/lib/pgsql/data/pg_hba.conf
+cp /var/lib/pgsql/data/pg_hba.conf /var/lib/pgsql/data/pg_hba.conf.orig
+cat >> /var/lib/pgsql/data/pg_hba.conf << 'EOF'
+
+# Koji
+local   koji        koji                                         trust
+local   koji        apache                                       trust
+host    koji        koji                127.0.0.1/32             trust
+host    koji        apache              127.0.0.1/32             trust
+host    koji        koji                ::1/128                  trust
+host    koji        apache              ::1/128                  trust
+host    koji        koji                192.168.122.89/32        trust
+host    koji        apache              192.168.122.89/32        trust
+EOF
+
+# Restart database services
+systemctl restart postgresql.service
+
+# Create the database tables
+su -l postgres -c "createuser koji; createdb -O koji koji"
+su -l koji -c "psql koji koji < /usr/share/doc/koji*/docs/schema.sql"
+su -l koji -c psql
+insert into users (name, status, usertype) values ('koji', 0, 0);
+insert into user_perms (user_id, perm_id, creator_id) values (1, 1, 1);
+insert into users (name, status, usertype) values ('kojiadmin', 0, 0);
+insert into user_perms (user_id, perm_id, creator_id) values (2, 1, 1);
+\q
+
+# Grant database persmissions
+koji grant-permission repo kojira
+
+# Add hosts and channels
+
+koji add-host kojibuilder1.localdomain i386 x86_64
+koji add-host-to-channel kojibuilder1.localdomain appliance
+koji add-host-to-channel kojibuilder1.localdomain createrepo
+koji add-host-to-channel kojibuilder1.localdomain livecd
+koji add-host-to-channel kojibuilder1.localdomain maven
+koji add-host-to-channel kojibuilder1.localdomain vm
+
+# Add tags and tag inheritance
+
+koji add-tag fedora-18-base
+koji add-tag fedora-18-addons
+koji add-tag fedora-18-addons-testing --parent=fedora-18-addons
+koji add-tag fedora-18-addons-build --parent=fedora-18-addons --arches="x86_64"
+koji add-tag-inheritance --priority=1 fedora-18-addons-build fedora-18-base
+koji add-tag maven-build --maven-support --parent=fedora-18-addons --arches="x86_64"
+koji add-tag --include-all --maven-support maven-import
+koji add-tag-inheritance fedora-18-addons-build maven-import --priority 10
+
+# Add target
+
+koji add-target fedora-18-addons fedora-18-addons-build fedora-18-addons-testing
+
+# Add external repo
+koji add-external-repo -t fedora-18-base fedora-mirror http://localhost.localdomain/repos/fedora-mirror
+
+# Add groups
+
+# build
+koji add-group fedora-18-addons-build build
+koji add-group-pkg fedora-18-addons-build build bash bzip2 cpio diffutils fedora-release findutils gawk gcc gcc-c++ info make redhat-rpm-config rpm-build sed shadow-utils unzip util-linux-ng which xz
+
+# srpm-build
+koji add-group fedora-18-addons-build srpm-build
+koji add-group-pkg fedora-18-addons-build srpm-build bash curl cvs fedora-release fedpkg gnupg2 make redhat-rpm-config rpm-build shadow-utils
+
+# appliance-build
+koji add-group fedora-18-addons-build appliance-build
+koji add-group-pkg fedora-18-addons-build appliance-build appliance-tools bash coreutils grub parted perl policycoreutils selinux-policy shadow-utils
+
+# maven-build
+koji add-group fedora-18-addons-build maven-build
+koji add-group-pkg fedora-18-addons-build maven-build bash coreutils java-1.7.0-openjdk-devel maven3 subversion liberation-sans-fonts liberation-serif-fonts liberation-mono-fonts git
+
+# livecd-build
+koji add-group fedora-18-addons-build livecd-build
+koji add-group-pkg fedora-18-addons-build livecd-build bash bzip2 coreutils cpio diffutils fedora-logos fedora-release findutils gawk gcc gcc-c++ grep gzip info livecd-tools make patch policycoreutils python-dbus redhat-rpm-config rpm-build sed selinux-policy-targeted shadow-utils squashfs-tools tar unzip util-linux which yum
+
+# Install repo packages
+
+yum install yum-utils
+
+vi /etc/yum.repos.d/fedora-mirror.repo
+
+[fedora-mirror]
+name=Fedora $releasever - $basearch
+failovermethod=priority
+mirrorlist=https://mirrors.fedoraproject.org/metalink?repo=fedora-$releasever&arch=$basearch
+enabled=0
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$basearch
+
+# Download rpms and create repo metadata
+
+mkdir -p /srv/www/html/repos/
+reposync -r fedora-mirror -p /var/www/html/repos/
+createrepo /srv/www/html/repos/fedora-mirror
+
+# Maven installation
+cd /tmp
+wget http://download.devel.redhat.com/brewroot/packages/org.apache.maven-maven/3.0.3/4/src/maven3-3.0.3-4.src.rpm
+wget http://download.devel.redhat.com/brewroot/packages/org.apache.maven-maven/3.0.3/4/noarch/maven3-3.0.3-4.noarch.rpm
+koji import --create-build maven3-3.0.3-4.src.rpm maven3-3.0.3-4.noarch.rpm
+koji add-pkg --owner=kojiadmin fedora-18-addons-build maven3
+koji tag-pkg fedora-18-addons-build maven3-3.0.3-4
+rm /tmp/*.rpm
+cd -
+
