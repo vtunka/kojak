@@ -12,7 +12,7 @@ Installation Intructions
 
 1.  Check and modify the env_vars.sh to suite your particular environment.
 
-2.  Execute install.sh to create the Kojack virtual appliance.
+2.  Execute install.sh to create the Kojak virtual appliance.
 
 3.  Copy over the schema.sql and users.sql to the /tmp dir on the virtual appliance.
 
