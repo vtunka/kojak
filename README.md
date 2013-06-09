@@ -6,3 +6,14 @@ adoption of the Koji/Mead build system.  The scripts included in this repository
 virtual machine.  They utilise the Libvirtd virtualization API and a kickstart file, based on a vanilla 
 Fedora installation, which provide an automated "out of the box solution", that may be used for developement and 
 educational purposes.
+
+Installation Intructions
+========================
+
+1.  Check and modify the env_vars.sh to suite your particular environment.
+
+2.  Execute install.sh to create the Kojack virtual appliance.
+
+3.  Copy over the schema.sql and users.sql to the /tmp dir on the virtual appliance.
+
+4.  Execute the post_install.sh script under /root to complete the configuration.
