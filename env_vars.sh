@@ -34,4 +34,5 @@ OPTDIR="${TMPDIR}/opt/${DIST}"
 CFGDIR="${TMPDIR}/cfg/${DIST}"
 BLDDIR="${TMPDIR}/bld/${DIST}"
 ISODIR="${TMPDIR}/iso/${DIST}"
+SRCLOC="http://download.fedoraproject.org/pub/fedora/linux/releases/18/Fedora/x86_64/os/"
 
