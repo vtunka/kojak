@@ -17,11 +17,3 @@ Installation Intructions
 3.  Copy over the schema.sql and users.sql to the /tmp dir on the virtual appliance.
 
 4.  Execute the post_install.sh script under /root to complete the configuration.
-
-
-Trouble-shooting
-================
-
-Check the kojak-ks.log under /root.
-
-
