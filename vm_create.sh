@@ -19,19 +19,26 @@
 #
 ###############################################################################
 
+# Verbose output 
 set -x
+
+# See env_vars.sh for varible assignments
 source ./env_vars.sh
 
 cd ${VMHOME}
 
+# Remove any pre-existing vm with the same name
 virsh destroy ${VMNAME}
 virsh undefine ${VMNAME}
 
+# Remove any pre-existing vm image with the same name
 rm ${VMHOME}/${VMNAME}.img
 
+# Allocate the diskspace for the vm
 fallocate -l 24576M ${VMHOME}/${VMNAME}.img
 chown qemu:qemu ${VMHOME}/${VMNAME}.img
 
+# Create the vm with the following options
 virt-install \
 -n ${VMNAME} \
 -r 4096 \
