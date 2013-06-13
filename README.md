@@ -8,7 +8,7 @@ Fedora installation, which provide an automated "out of the box" solution, which
 educational purposes.
 
 Installation Intructions
-========================
+------------------------
 
 1.  Check and modify the env_vars.sh to suit your particular environment.
 2.  Execute install.sh to create the Kojak virtual appliance.
@@ -16,7 +16,7 @@ Installation Intructions
 4.  Execute the post_install.sh script under /root to complete the configuration.
 
 Configuration Notes
-===================
+-------------------
 
 The virtual appliance is configured with a static ip address taken from the pool of ip addresses of the "default" network.
 You can access the appliance via ssh at 192.168.122.2.
@@ -25,6 +25,6 @@ Currently Kojak uses SSL certificates as the preffered method of authentication.
 browser based logins you will need to import.  The cert is can be accessed from /home/koji/.koji.
 
 Known Issues
-============
+------------
 
 This installation ships with a patched version of schema.sql with resolves a number of database schmea issues.
