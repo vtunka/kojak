@@ -21,7 +21,7 @@
 
 
 VMNAME="Fedora-18-x86_64-DVD"
-VMHOME="/mnt/media/USB0/"
+VMHOME="/var/lib/libvirt/images/"
 TMPDIR="/home/kojak"
 DIST="RedHat/Fedora/18/0/x86_64"
 
@@ -34,5 +34,4 @@ OPTDIR="${TMPDIR}/opt/${DIST}"
 CFGDIR="${TMPDIR}/cfg/${DIST}"
 BLDDIR="${TMPDIR}/bld/${DIST}"
 ISODIR="${TMPDIR}/iso/${DIST}"
-SRCLOC="http://download.fedoraproject.org/pub/fedora/linux/releases/18/Fedora/x86_64/os/"
 
