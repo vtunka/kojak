@@ -21,9 +21,10 @@ Configuration Notes
 The virtual appliance is configured with a static ip address taken from the pool of ip addresses of the "default" network.
 You can access the appliance via ssh at 192.168.122.2.
 
-Currently Kojak uses SSL certificates as the preffered method of authentication.
+Currently Kojak uses SSL certificates as the preffered method of authentication.  To utilise the client certificate for
+browser based logins you will need to import.  The cert is can be accessed from /home/koji/.koji.
 
 Known Issues
 ============
 
-This installation ships with a patched version of schema.sql with resolves a number of issues database schmea issues.
+This installation ships with a patched version of schema.sql with resolves a number of database schmea issues.
