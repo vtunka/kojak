@@ -18,11 +18,16 @@ Installation Intructions
 Configuration Notes
 -------------------
 
-The virtual appliance is configured with a static ip address taken from the pool of ip addresses of the "default" network.
+The Kojak virtual appliance is configured with a set of default options.  These can be easily modified by editing either 
+the varibles in env_var.sh, for directory locations, iso images and associated configuration files, or create_vm.sh for 
+virtual machine resources allocvations (Mem, CPU and Storage etc).  The appliance is configured with with a static ip 
+address taken from the pool of ip addresses from the "default" network that is configured with libvirt. 
+
 You can access the appliance via ssh at 192.168.122.2.
 
-Currently Kojak uses SSL certificates as the preffered method of authentication.  To utilise the client certificate for
-browser based logins you will need to import.  The cert is can be accessed from /home/koji/.koji.
+Currently Kojak uses SSL certificates as the preferred method of authentication. To utilise the client certificate for 
+browser based logins you will need to import the certificate. The certificate is can be accessed from /home/koji/.koji.  
+Certificates are created for a default set of users which includes koji, kojiadmin, kojira and 3 kojibuilders.
 
 Known Issues
 ------------
