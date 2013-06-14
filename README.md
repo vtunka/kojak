@@ -42,5 +42,5 @@ Certificates are created for a default set of users which includes koji, kojiadm
 Known Issues
 ------------
 
-This installation ships with a patched version of schema.sql with resolves a number of database schmea issues.
+This installation ships with a patched version of schema.sql with resolves a number of database schema issues.
 
