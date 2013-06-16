@@ -1,7 +1,7 @@
 Kojak - "Koji in an box"
 ========================
 
-Kojak is a Koji virtual appliance complete with Mead extensions.  It is part of a production effort to encourage the
+Kojak is a Koji virtual appliance complete with Mead extensions.  It is part of a productization effort to encourage the
 adoption of the Kojak/Mead build system.  The scripts included in this repository create a fully operational Koji/Mead
 virtual machine.  They utilise the Libvirtd visualization API and a kickstart file, based on a vanilla
 Fedora installation, which provide an automated "out of the box" solution, which may be used for development and
@@ -10,17 +10,22 @@ educational purposes.
 Minimum System Requirements
 ---------------------------
 
-The Kojak virtual appliance is configured with he following default specifications:
+Currently Kojack requires an updated Fedora 18 installation installed with the packages in the @virtualization rpm 
+package group. See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more inforation. 
+
+The virtual appliance is configured with he following default specifications:
 
 1. 4GB RAM
-2. 100 GB Disk Space
+2. 50 GB Disk Space
+3. IP address 192.168.122.2
 
-The PXE environment runs on a vanilla Fedora 18 installation.
+You can adjust these setting by editing the options in vm_create.sh and kojak_ks.cfg.
+
 
 Installation Instructions
 ------------------------
 
-1.  Check and modify the env_vars.sh to suit your particular environment.
+1.  Check and modify the env_vars.sh, vm_create.sh and kojak_ks.cfg to suit your particular environment.
 2.  Execute install.sh to create the Kojak virtual appliance.
 3.  Copy over the schema.sql and users.sql to the /tmp dir on the virtual appliance.
 4.  Execute the post_install.sh script under /root to complete the configuration.
@@ -42,5 +47,9 @@ Certificates are created for a default set of users which includes koji, kojiadm
 Known Issues
 ------------
 
-This installation ships with a patched version of schema.sql with resolves a number of database schema issues.
+14/06/2013
+
+This installation ships with a patched version of schema.sql with resolves a number of database schema issues.  The
+issue is resolved as of version 1.8.0 and Kojak will be updated accordingly once the packages are made available for 
+general consuption.
 
