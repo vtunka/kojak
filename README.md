@@ -4,29 +4,29 @@ Kojak - "Koji in an box"
 Kojak is a Koji virtual appliance complete with Mead extensions.  It is part of a productization effort to encourage the
 adoption of the Kojak/Mead build system.  The scripts included in this repository create a fully operational Koji/Mead
 virtual machine.  They utilise the Libvirtd visualization API and a kickstart file, based on a vanilla
-Fedora installation, which provide an automated "out of the box" solution, which may be used for development and
+Fedora installation, to provide an automated "out of the box" solution, which may be used for development and
 educational purposes.
 
 Minimum System Requirements
 ---------------------------
 
-Currently Kojack requires an updated Fedora 18 installation installed with the packages in the @virtualization rpm 
+Currently Kojak requires an updated Fedora 18 installation installed with the packages in the @virtualization rpm 
 package group. See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more inforation. 
 
 The virtual appliance is configured with he following default specifications:
 
 1. 4GB RAM
 2. 50 GB Disk Space
-3. IP address 192.168.122.2
+3. IP Address 192.168.122.2
 
-You can adjust these setting by editing the options in vm_create.sh and kojak_ks.cfg.
+You can adjust these settings by editing the options in vm_create.sh and kojak_ks.cfg.
 
 
 Installation Instructions
 ------------------------
 
 1.  Check and modify the env_vars.sh, vm_create.sh and kojak_ks.cfg to suit your particular environment.
-2.  Execute install.sh to create the Kojak virtual appliance.
+2.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run successfully. 
 3.  Copy over the schema.sql and users.sql to the /tmp dir on the virtual appliance.
 4.  Execute the post_install.sh script under /root to complete the configuration.
 
@@ -38,7 +38,10 @@ the variables in env_var.sh, for directory locations, iso images and associated 
 virtual machine resources allocations (Mem, CPU and Storage etc).  The appliance is configured with with a static ip
 address taken from the pool of ip addresses from the "default" network that is configured with libvirt.
 
-You can access the appliance via ssh at 192.168.122.2.
+You can access the appliance via ssh at 192.168.122.2 using the following credentials:
+
+username: root
+password: root
 
 Currently Kojak uses SSL certificates as the preferred method of authentication. To utilise the client certificate for
 browser based logins you will need to import the certificate. The certificate is can be accessed from /home/koji/.koji.
