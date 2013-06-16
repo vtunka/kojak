@@ -36,5 +36,5 @@ BLDDIR="${TMPDIR}/bld/${DIST}"
 ISODIR="${TMPDIR}/iso/${DIST}"
 
 # Virtual machine specifications
-VMDISK="512000"
+VMDISK="512000M"
 VMMEM="4096"
