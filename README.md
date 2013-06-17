@@ -44,6 +44,8 @@ Currently Kojak uses SSL certificates as the preferred method of authentication.
 browser based logins you will need to import the certificate. The certificate is can be accessed from /home/koji/.koji.
 Certificates are created for a default set of users which includes koji, kojiadmin, kojira and 3 kojibuilders.
 
+Access to http://download.devel.redhat.com/ is required for the current version of Maven that is used.
+
 Known Issues
 ------------
 
