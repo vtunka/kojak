@@ -17,7 +17,7 @@ information.  It is recommended that the system be updated to utilise the most c
 A fast internet connection and is also required in order to facilitate the downloading of any package dependancies.
 
 Minimum System Requirements
-=========================== 
+--------------------------- 
 
 The virtual appliance is configured with the following default specifications:
 
