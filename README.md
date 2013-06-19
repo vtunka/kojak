@@ -7,17 +7,29 @@ virtual machine.  They utilize the Libvirtd visualization API and a kickstart fi
 Fedora installation, to provide an automated "out of the box" solution, which may be used for development and
 educational purposes.
 
-Minimum System Requirements
+Installation Prerequisites
 ---------------------------
 
-Currently Kojak requires an updated Fedora 18 installation installed with the packages in the @virtualization rpm 
-package group. See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more information. 
+In installation comprises of a virtual appliance server which is used to build and deploy the virtual appliance.  Kojak 
+has been successfully installed and tested on an virtual appliance server, running Fedora 18, installed with the 
+virtualization rpm package group. See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more 
+information.  It is recommended that the system be updated to utilise the most current versions of this package group.
+A fast internet connection and is also required in order to facilitate the downloading of any package dependancies.
 
-The virtual appliance is configured with he following default specifications:
+Minimum System Requirements
+=========================== 
+
+The virtual appliance is configured with the following default specifications:
 
 1. 4GB RAM
-2. 50 GB Disk Space
-3. IP Address 192.168.122.2
+2. 32 GB Disk Space
+
+It is therefore recommended that your Virtual Appliance Server exceeds these specifications considerably. 
+
+The Virtual Appilance Server should be configured with the following minimum specifications:
+
+1. 8GB RAM
+2. 120 GB Disk Space 
 
 Installation Instructions
 ------------------------
