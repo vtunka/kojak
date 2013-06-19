@@ -10,7 +10,7 @@ educational purposes.
 Installation Prerequisites
 ---------------------------
 
-In installation comprises of a virtual appliance server which is used to build and deploy the virtual appliance.  Kojak 
+This installation comprises of a virtual appliance server which is used to build and deploy the virtual appliance.  Kojak 
 has been successfully installed and tested on an virtual appliance server, running Fedora 18, installed with the 
 virtualization rpm package group. See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more 
 information.  It is recommended that the system be updated to utilise the most current versions of this package group.
