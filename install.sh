@@ -20,7 +20,28 @@
 ###############################################################################
 
 set -x
-source ./env_vars.sh
+
+## Declare environment varibles
+
+# Distro information
+VMNAME="Fedora-18-x86_64-DVD"
+VMHOME="/mnt/media/USB0"
+TMPDIR="/home/kojak"
+DIST="RedHat/Fedora/18/0/x86_64"
+
+# Sources and configuration
+KSISO="Fedora-18-x86_64-DVD.iso"
+KSCFG="Fedora-18-x86_64.cfg"
+
+# Working directories
+MNTDIR="${TMPDIR}/mnt/${DIST}"
+CFGDIR="${TMPDIR}/cfg/${DIST}"
+BLDDIR="${TMPDIR}/bld/${DIST}"
+ISODIR="${TMPDIR}/iso/${DIST}"
+
+# Virtual machine specifications
+VMDISK="32768M"
+VMMEM="4096"
 
 mkdir -p $MNTDIR $OPTDIR $CFGDIR $BLDDIR $ISODIR $IMGDIR
 
@@ -36,4 +57,32 @@ fi
 
 cp kojak_ks.cfg $CFGDIR/
 
-./vm_create.sh
+cd ${VMHOME}
+
+# Remove any pre-existing vm with the same name
+virsh destroy ${VMNAME}
+virsh undefine ${VMNAME}
+
+# Remove any pre-existing vm image with the same name
+rm ${VMHOME}/${VMNAME}.img
+
+# Allocate the diskspace for the vm
+fallocate -l ${VMDISK} ${VMHOME}/${VMNAME}.img
+chown qemu:qemu ${VMHOME}/${VMNAME}.img
+
+# Create the vm with the following options
+virt-install \
+-n ${VMNAME} \
+-r ${VMMEM} \
+--vcpus=2 \
+--os-type=linux \
+--os-variant=fedora18 \
+--accelerate \
+--mac=00:00:00:00:00:00 \
+--disk=${VMHOME}/${VMNAME}.img \
+--disk=${ISODIR}/${KSISO},device=cdrom \
+--location ${ISODIR}/${KSISO} \
+--initrd-inject=${CFGDIR}/kojak_ks.cfg \
+--extra-args="ks=file:kojak_ks.cfg console=tty0 console=ttyS0,115200 serial rd_NO_PLYMOUTH" \
+--nographics
+
