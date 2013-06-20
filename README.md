@@ -36,9 +36,8 @@ Installation Instructions
 ------------------------
 
 1.  Check and modify the env_vars.sh, vm_create.sh and kojak_ks.cfg to suit your particular environment.
-2.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run successfully. 
-3.  Copy over the schema.sql and users.sql to the /tmp dir on the virtual appliance.
-4.  Execute the post_install.sh script under /root to complete the configuration.
+2.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run. 
+3.  Login and execute the post_install.sh script under /root to complete the configuration.
 
 Configuration Notes
 -------------------
@@ -62,7 +61,7 @@ Access to http://download.devel.redhat.com/ is required for the current version 
 Known Issues
 ------------
 
-14/06/2013
+14/06/2013  - Fixed
 
 This installation ships with a patched version of schema.sql with resolves a number of database schema issues.  The
 issue is resolved as of version 1.8.0.1 and Kojak will be updated accordingly once the packages are made available for 
