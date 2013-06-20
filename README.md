@@ -64,6 +64,6 @@ Known Issues
 14/06/2013
 
 This installation ships with a patched version of schema.sql with resolves a number of database schema issues.  The
-issue is resolved as of version 1.8.0 and Kojak will be updated accordingly once the packages are made available for 
+issue is resolved as of version 1.8.1 and Kojak will be updated accordingly once the packages are made available for 
 general consumption.
 
