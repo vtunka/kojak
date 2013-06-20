@@ -24,12 +24,13 @@ The virtual appliance is configured with the following default specifications:
 1. 4GB RAM
 2. 32 GB Disk Space
 
-It is therefore recommended that your Virtual Appliance Server exceeds these specifications considerably. 
+It is therefore recommended that your Virtual Appliance Server exceeds these specifications. 
 
 The Virtual Appilance Server should be configured with the following minimum specifications:
 
-1. 8GB RAM
-2. 120 GB Disk Space 
+1. Fedora 18 with virtualization package group
+2. 8GB RAM
+3. 120 GB Disk Space 
 
 Installation Instructions
 ------------------------
@@ -64,6 +65,6 @@ Known Issues
 14/06/2013
 
 This installation ships with a patched version of schema.sql with resolves a number of database schema issues.  The
-issue is resolved as of version 1.8.1 and Kojak will be updated accordingly once the packages are made available for 
+issue is resolved as of version 1.8.0.1 and Kojak will be updated accordingly once the packages are made available for 
 general consumption.
 
