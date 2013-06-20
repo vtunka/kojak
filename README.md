@@ -37,7 +37,7 @@ The Virtual Appilance Server should be configured with the following minimum spe
 Installation Instructions
 ------------------------
 
-1.  Check and modify the env_vars.sh, vm_create.sh and kojak_ks.cfg to suit your particular environment.
+1.  Check and modify install.sh and kojak_ks.cfg to suit your particular environment.
 2.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run. 
 3.  Login and execute the post_install.sh script under /root to complete the configuration.
 
