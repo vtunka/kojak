@@ -67,7 +67,6 @@ Known Issues
 
 21/06/2013
 
-The post configuration routines are not removed after the system has finished installing.  These need to be removed 
-manually.  Login and execute the following command as root.
+The post configuration routines are not removed after the system has finished installing.  Login and execute the following command as root.
 
 rm -f /etc/init.d/9* 
