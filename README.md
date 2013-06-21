@@ -42,7 +42,6 @@ Installation Instructions
 3.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run.
 4.  Point your browser to 192.168.122.2 and check the states of the tasks.
 
-
 Configuration Notes
 -------------------
 
