@@ -3,8 +3,8 @@ Kojak - "Koji in an box"
 
 Kojak is a Koji virtual appliance complete with Mead extensions.  It is part of a productization effort to encourage the
 adoption of the Kojak/Mead build system.  The scripts included in this repository create a fully operational Koji/Mead
-virtual machine running on Fedora 18.  They utilize the Libvirtd visualization API and a kickstart file, based on a vanilla
-Fedora installation, to provide an automated "out of the box" solution, which may be used for development and
+virtual machine running on Fedora 18.  They utilize the Libvirtd visualization API and a kickstart file, based on a 
+vanilla Fedora installation, to provide an automated "out of the box" solution, which may be used for development and
 educational purposes.
 
 For more information about Koji see http://fedoraproject.org/wiki/Koji for more information.
@@ -12,8 +12,8 @@ For more information about Koji see http://fedoraproject.org/wiki/Koji for more 
 Installation Prerequisites
 ---------------------------
 
-This installation comprises of a virtual appliance server which is used to build and deploy the virtual appliance.  Kojak 
-has been successfully installed and tested on Fedora 18 installed with the virtualization rpm package group. 
+This installation comprises of a virtual appliance server which is used to build and deploy the virtual appliance.
+Kojak has been successfully installed and tested on Fedora 18. 
 
 See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more information
 
@@ -39,8 +39,8 @@ Installation Instructions
 
 1   Checkout the contents of the Kojak git repository to a suitable directory on the Virtual Appliance Server.
 2.  Check and modify install.sh and kojak_ks.cfg under the kojak directroy to suit your particular environment.
-3.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run. 
-4.  Point your browser to 192.168.122.2 and check the states of the tasks.  Wait for any outstanding tasks to be completed.
+3.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run.
+4.  Point your browser to 192.168.122.2 and check the states of the tasks.
 
 
 Configuration Notes
