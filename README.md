@@ -37,8 +37,8 @@ The Virtual Appilance Server should be configured with the following minimum spe
 Installation Instructions
 ------------------------
 
-1   Checkout the contents of the Kojak git repository to a suitable directory on the Virtual Appliance Server.
-2.  Check and modify install.sh and kojak_ks.cfg under the kojak directroy to suit your particular environment.
+1.  Checkout the contents of the Kojak git repository to a suitable directory on the Virtual Appliance Server.
+2.  Check and modify the files under the kojak directroy to suit your particular environment.
 3.  Execute install.sh to create the Kojak virtual appliance.  The script requires root privileges to run.
 4.  Point your browser to 192.168.122.2 and check the states of the tasks.
 
