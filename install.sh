@@ -36,7 +36,6 @@ KSCFG="Fedora-18-x86_64.cfg"
 # Working directories
 MNTDIR="${TMPDIR}/mnt/${DIST}"
 CFGDIR="${TMPDIR}/cfg/${DIST}"
-BLDDIR="${TMPDIR}/bld/${DIST}"
 ISODIR="${TMPDIR}/iso/${DIST}"
 
 # Virtual machine specifications
