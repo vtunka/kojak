@@ -24,7 +24,7 @@ set -x
 
 # Distro information
 VMNAME="Fedora-18-x86_64-DVD"
-VMHOME="/home/kojak/USB0"
+VMHOME="/var/lib/libvirt/images"
 TMPDIR="/home/kojak"
 DIST="RedHat/Fedora/18/0/x86_64"
 
