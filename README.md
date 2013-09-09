@@ -65,7 +65,7 @@ Currently Kojak uses SSL certificates as the preferred method of authentication.
 browser based logins you will need to import the certificate. The certificate is can be accessed from /home/koji/.koji.
 Certificates are created for a default set of users which includes koji, kojiadmin, kojira and 3 kojibuilders.
 
-The Maven toolchain is located in the koji users workspace directory along with example configurations. 
+The Maven tool chain is located in the koji users workspace directory along with example configurations. 
 
 Known Issues
 ------------
