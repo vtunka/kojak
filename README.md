@@ -9,11 +9,11 @@ automated "out of the box" solution, which may be used for development and educa
 
 See the links below for a details about the tools shipped with Kojak
 
-Aprox - http://github.com/jdcasey/aprox
-Atlas - http://github.com/jdcasey/atlas
-Cartographer - http://github.com/jdcasey/cartographer
-Galley - http://github.com/jdcasey/galley
-Koji - http://fedoraproject.org/wiki/Koji
+1. Aprox - http://github.com/jdcasey/aprox
+2. Atlas - http://github.com/jdcasey/atlas
+3. Cartographer - http://github.com/jdcasey/cartographer
+4. Galley - http://github.com/jdcasey/galley
+5. Koji - http://fedoraproject.org/wiki/Koji
 
 Installation Prerequisites
 ---------------------------
@@ -58,15 +58,14 @@ taken from the pool of ip addresses from the "default" network that is configure
 
 You can access the appliance via ssh at 192.168.122.2 using the following credentials:
 
-username: root
-password: root
+1. username: root
+2. password: root
 
 Currently Kojak uses SSL certificates as the preferred method of authentication. To utilize the client certificate for
 browser based logins you will need to import the certificate. The certificate is can be accessed from /home/koji/.koji.
 Certificates are created for a default set of users which includes koji, kojiadmin, kojira and 3 kojibuilders.
 
 The Maven toolchain is located in the koji users workspace directory along with example configurations. 
-
 
 Known Issues
 ------------
