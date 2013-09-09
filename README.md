@@ -7,7 +7,13 @@ scripts included in this repository create a fully operational Koji/Mead virtual
 utilize the Libvirtd visualization API and a kickstart file, based on a vanilla Fedora installation, to provide an
 automated "out of the box" solution, which may be used for development and educational purposes.
 
-For more information about Koji see http://fedoraproject.org/wiki/Koji for more information.
+See the links below for a details about the tools shipped with Kojak
+
+Aprox - http://github.com/jdcasey/aprox
+Atlas - http://github.com/jdcasey/atlas
+Cartographer - http://github.com/jdcasey/cartographer
+Galley - http://github.com/jdcasey/galley
+Koji - http://fedoraproject.org/wiki/Koji
 
 Installation Prerequisites
 ---------------------------
@@ -59,7 +65,10 @@ Currently Kojak uses SSL certificates as the preferred method of authentication.
 browser based logins you will need to import the certificate. The certificate is can be accessed from /home/koji/.koji.
 Certificates are created for a default set of users which includes koji, kojiadmin, kojira and 3 kojibuilders.
 
-Access to http://download.devel.redhat.com/ is required for the current version of Maven that is used.
+The Maven toolchain is located in the koji users workspace directory along with example configurations. 
+
 
 Known Issues
 ------------
+
+Access to http://download.devel.redhat.com/ is required for the current version of Maven that is used.
