@@ -14,6 +14,7 @@ See the links below for a details about the tools shipped with Kojak
 3. Cartographer - http://github.com/jdcasey/cartographer
 4. Galley - http://github.com/jdcasey/galley
 5. Koji - http://fedoraproject.org/wiki/Koji
+6. maven-repository-builder - http://github.com/jboss-eap/maven-repository-builder
 
 Installation Prerequisites
 ---------------------------
