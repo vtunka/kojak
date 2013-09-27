@@ -27,8 +27,8 @@ See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more i
 It is recommended that the system be updated before beginning the installation.  A fast internet connection and is also 
 required in order to facilitate the downloading of any package dependancies.
 
-Minimum System Requirements
---------------------------- 
+System Requirements
+------------------- 
 
 The virtual appliance is configured with the following default specifications:
 
