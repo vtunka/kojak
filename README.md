@@ -1,26 +1,29 @@
 Kojak - "Koji in an box"
 ========================
 
-Kojak is a Koji virtual appliance complete with Mead extensions and Maven tool chain for building and deploying Java
-applications.  It is part of a productization effort to encourage the adoption of the Kojak/Mead build system.  The 
-scripts included in this repository create a fully operational Koji/Mead virtual machine running on Fedora 18.  They 
-utilize the Libvirtd visualization API and a kickstart file, based on a vanilla Fedora installation, to provide an
-automated "out of the box" solution, which may be used for development and educational purposes.
+Kojak is a Koji virtual appliance complete with Mead extensions and Maven tool chain.  It is used to build and deploy 
+packages for a variety of different platforms.  This project is part of a productization effort to encourage the adoption
+of the Koji/Mead build system.  The scripts included in this repository create a fully operational Koji/Mead virtual
+machine running on Fedora 18.  They utilize the Libvirtd visualization API and a kickstart file, based on a vanilla
+Fedora installation, to provide an automated "out of the box" solution, which may be used for development and
+educational purposes.
 
 See the links below for a details about the tools shipped with Kojak
 
 1. Aprox - http://github.com/jdcasey/aprox
 2. Atlas - http://github.com/jdcasey/atlas
-3. Cartographer - http://github.com/jdcasey/cartographer
-4. Galley - http://github.com/jdcasey/galley
-5. Koji - http://fedoraproject.org/wiki/Koji
-6. maven-repository-builder - http://github.com/jboss-eap/maven-repository-builder
+3. buildmetadta-maven-plugin - http://github.com/sbadakhc/buildmetadata-maven-plugin.git
+4. Cartographer - http://github.com/jdcasey/cartographer
+5. Galley - http://github.com/jdcasey/galley
+6. Koji - http://fedoraproject.org/wiki/Koji
+7. maven-repository-builder - http://github.com/jboss-eap/maven-repository-builder
 
 Installation Prerequisites
 ---------------------------
 
-This installation comprises of a virtual appliance server which is used to build and deploy the virtual appliance.
-Kojak has been successfully installed and tested on Fedora 18. 
+This installation comprises of a virtual appliance server (VAS) which is used to build and deploy the virtual appliance.
+Typically this would be your laptop or designated server.  Kojak has been successfully installed and tested on Fedora 18
+but should work with any *NIX that ships with KVM and the Libvirt virtualisation packages.
 
 See http://fedoraproject.org/wiki/Getting_started_with_virtualization for more information
 
@@ -55,7 +58,7 @@ Configuration Notes
 The Kojak virtual appliance is configured with a set of default options.  These can be easily modified by editing the 
 variables in install.sh.  Installation directories, iso location and virtual machine resources allocations
 (Mem, CPU and Storage etc) can all be reconfigured as required.  The appliance is configured with with a static ipaddress 
-taken from the pool of ip addresses from the "default" network that is configured with libvirt.
+taken from the pool of ip addresses from the "default" network that is configured with Libvirt.
 
 You can access the appliance via ssh at 192.168.122.2 using the following credentials:
 
