@@ -12,7 +12,7 @@ See the links below for a details about the tools shipped with Kojak
 
 1. Aprox - http://github.com/jdcasey/aprox
 2. Atlas - http://github.com/jdcasey/atlas
-3. buildmetadta-maven-plugin - http://github.com/sbadakhc/buildmetadata-maven-plugin.git
+3. buildmetadata-maven-plugin - http://github.com/sbadakhc/buildmetadata-maven-plugin.git
 4. Cartographer - http://github.com/jdcasey/cartographer
 5. Galley - http://github.com/jdcasey/galley
 6. Koji - http://fedoraproject.org/wiki/Koji
