@@ -4,7 +4,7 @@ Kojak - "Koji in an box"
 Kojak is a Koji virtual appliance complete with Mead extensions and Maven tool chain.  It is used to build and deploy 
 packages for a variety of different platforms.  This project is part of a productization effort to encourage the adoption
 of the Koji/Mead build system.  The scripts included in this repository create a fully operational Koji/Mead virtual
-machine running on Fedora 18.  They utilize the Libvirtd visualization API and a kickstart file, based on a vanilla
+machine running on Fedora 18.  They utilize the Libvirt visualization API and a kickstart file, based on a vanilla
 Fedora installation, to provide an automated "out of the box" solution, which may be used for development and
 educational purposes.
 
